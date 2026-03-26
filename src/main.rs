@@ -21,6 +21,7 @@ async fn main() {
             println!("Please, enter de app id:");
             let mut app_id = String::new();
             io::stdin().read_line(&mut app_id).unwrap();
+            app_id = app_id.trim().to_string();
 
             let steam_app: SteamApp = SteamApp::new(app_id.clone());
             let app_name = steam_app.id_to_name().await;
