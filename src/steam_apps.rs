@@ -33,13 +33,17 @@ impl SteamApp {
     pub async fn get_workshop_storage(os: String) -> f64 {
         let workshop_path: &Path;
         let mut total_size: f64 = 0.0;
+        let formatted_path: String; // for Linux
 
         if os == "W" {
             workshop_path = Path::new("C:/Program Files (x86)/Steam/steamapps/workshop/content");
         }
         else {
-            println!("Not supported.");
-            workshop_path = Path::new("C:/Program Files (x86)/Steam/steamapps/workshop/content");
+            // I haven't tested this
+            let home = std::env::var("HOME").expect("Home path not found");
+            let steam_path = ".steam/steam/steamapps/workshop/content/";
+            formatted_path = format!("{}/{}", home, steam_path);
+            workshop_path = Path::new(&formatted_path);
         }
 
         if !workshop_path.exists() {

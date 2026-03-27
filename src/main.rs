@@ -11,7 +11,7 @@ async fn main() {
     println!("========================================================");
     println!("1. Get Steam app name from id");
     println!("2. Analyze Steam workshop size (Windows)");
-    println!("3. Analyze Steam workshop size (Linux) (not implemented)");
+    println!("3. Analyze Steam workshop size (Linux)");
     println!("========================================================");
     let mut option = String::new();
     io::stdin().read_line(&mut option).unwrap();
