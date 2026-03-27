@@ -5,7 +5,6 @@ use steam_apps::SteamApp;
 
 #[tokio::main]
 async fn main() {
-    // TODO: let the user decide if they want to analyze it on Windows, Linux, or just get a name from an AppId
 
     println!("Select what you want to do:");
     println!("========================================================");
