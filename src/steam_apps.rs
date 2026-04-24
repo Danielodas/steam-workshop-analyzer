@@ -39,7 +39,6 @@ impl SteamApp {
             workshop_path = Path::new("C:/Program Files (x86)/Steam/steamapps/workshop/content");
         }
         else {
-            // I haven't tested this
             let home = std::env::var("HOME").expect("Home path not found");
             let steam_path = ".steam/steam/steamapps/workshop/content/";
             formatted_path = format!("{}/{}", home, steam_path);
