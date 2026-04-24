@@ -17,7 +17,7 @@ async fn main() {
 
     match option.trim() {
         "1" => {
-            println!("Please, enter de app id:");
+            println!("Please, enter the app id:");
             let mut app_id = String::new();
             io::stdin().read_line(&mut app_id).unwrap();
             app_id = app_id.trim().to_string();
