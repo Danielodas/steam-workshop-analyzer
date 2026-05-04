@@ -4,12 +4,12 @@
 Use the following branch prefixes depending on the type of work:
 - feat/ for adding features
 - docs/ for adding, updating or changing documentation 
-- bug/ for fixing something that doesn't work as expected
+- fix/ for fixing something that doesn't work as expected
 - chore/ for refactoring the code or editing something that does not change the logic of the program
 
 ## Commits
 Here are some examples of the prompt guidelines for commits to follow:
-- ADD: function that does x
+- FEAT: function that does x
 - FIX: function doing y instead of x
 - CHORE: refactor function x
 - CLEANUP: remove outdated comment
