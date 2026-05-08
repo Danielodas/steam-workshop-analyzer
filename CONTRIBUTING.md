@@ -18,6 +18,10 @@ Here are some examples of the prompt guidelines for commits to follow:
 ## Issues
 Feel free to open an issue for suggestions, bugs, questions, etc!
 
+## Pull Requests
+May not always be reviewed, accepted or merged.
+Please ask first in an issue before working on any changes.
+
 ## Style
 Follow the style used in the code, here are some examples:
 - RustStruct
