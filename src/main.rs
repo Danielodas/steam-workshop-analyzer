@@ -32,8 +32,8 @@ fn help() {
     println!("Available arguments:");
     println!();
     
-    println!("--help'               Explains what SWA is.");
-    println!("--disk'               Analyzes the disk space your Steam workshop mods take in your system.");
+    println!("--help                Explains what SWA is.");
+    println!("--disk                Analyzes the disk space your Steam workshop mods take in your system.");
     println!("--appid [appid]       Given a Steam app ID, returns its name.");
 }
 
