@@ -35,14 +35,18 @@ impl SteamApp {
         let mut total_size: f64 = 0.0;
         let formatted_path: String; // for Linux
 
-        if os == "W" {
+        if os == "windows" {
             workshop_path = Path::new("C:/Program Files (x86)/Steam/steamapps/workshop/content");
         }
-        else {
+        else if os == "linux" {
             let home = std::env::var("HOME").expect("Home path not found");
             let steam_path = ".steam/steam/steamapps/workshop/content/";
             formatted_path = format!("{}/{}", home, steam_path);
             workshop_path = Path::new(&formatted_path);
+        }
+        else {
+            println!("Operating system not supported...");
+            return 0.0;
         }
 
         if !workshop_path.exists() {

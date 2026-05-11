@@ -1,17 +1,17 @@
 mod steam_apps;
 
 use std::io;
+use std::env::consts::OS;
 use steam_apps::SteamApp;
 
 #[tokio::main]
 async fn main() {
 
     println!("Select what you want to do:");
-    println!("========================================================");
+    println!("====================================");
     println!("1. Get Steam app name from id");
-    println!("2. Analyze Steam workshop size (Windows)");
-    println!("3. Analyze Steam workshop size (Linux)");
-    println!("========================================================");
+    println!("2. Analyze Steam workshop size");
+    println!("====================================");
     let mut option = String::new();
     io::stdin().read_line(&mut option).unwrap();
 
@@ -29,11 +29,7 @@ async fn main() {
         }
         "2" => {
             println!();
-            SteamApp::get_workshop_storage("W".to_string()).await;
-        }
-        "3" => {
-            println!();
-            SteamApp::get_workshop_storage("L".to_string()).await;
+            SteamApp::get_workshop_storage(OS.to_string()).await;
         }
         _ => println!("Option out of scope."),
     }
