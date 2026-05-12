@@ -1,6 +1,6 @@
 mod steam_apps;
 
-use std::io;
+use std::io::{self, Write};
 use std::env::args;
 use std::env::consts::OS;
 use steam_apps::SteamApp;
@@ -73,6 +73,15 @@ async fn check_args() -> bool {
     return true
 }
 
+fn menu() {
+    println!("====================================");
+    println!("0. Help");
+    println!("1. Get Steam app name from id");
+    println!("2. Analyze Steam workshop size");
+    println!("3. Exit");
+    println!("====================================");
+}
+
 async fn get_steamapp() {
     println!("Please, enter the app id:");
     let mut app_id = String::new();
@@ -87,37 +96,49 @@ async fn get_steamapp_by_id(app_id: String) {
     let app_name = steam_app.id_to_name().await;
 
     print!("ID: {} - Name: {}", app_id.trim(), app_name);
+    io::stdout().flush().unwrap();
 }
 
 #[tokio::main]
 async fn main() {
 
     let exit = check_args().await;
+    let mut option = String::new();
+    let mut wait = String::new();
 
     if exit {
         return;
     }
 
-    println!("Select what you want to do:");
-    println!("====================================");
-    println!("1. Get Steam app name from id");
-    println!("2. Analyze Steam workshop size");
-    println!("====================================");
-    let mut option = String::new();
-    io::stdin().read_line(&mut option).unwrap();
+    loop {
+        ascii_art();
+        menu();
+        io::stdin().read_line(&mut option).unwrap();
 
-    match option.trim() {
-        "1" => {
-            get_steamapp().await;
+        match option.trim() {
+            "0" => {
+                help();
+                io::stdin().read_line(&mut wait).unwrap();
+            }
+            "1" => {
+                get_steamapp().await;
+                io::stdin().read_line(&mut wait).unwrap();
+            }
+            "2" => {
+                println!();
+                SteamApp::get_workshop_storage(OS.to_string()).await;
+                break;
+            }
+            "3" => {
+                break;
+            }
+            _ => println!("Option out of scope."),
         }
-        "2" => {
-            println!();
-            SteamApp::get_workshop_storage(OS.to_string()).await;
-        }
-        _ => println!("Option out of scope."),
+
+        option = String::new();
+
     }
 
     println!("\n\nPress enter to exit...");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).unwrap();
+    io::stdin().read_line(&mut wait).unwrap();
 }
